@@ -2,16 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>View Products</title>
+    <title>Found Products</title>
 </head>
 <body>
-<h1>All Products</h1>
+<h1>Found Products</h1>
 <ul>
     <li th:each="product : ${products}">
-        <strong>ID:</strong> <span th:text="${product.id}"></span> -
         <strong>Name:</strong> <span th:text="${product.name}"></span> -
-        <strong>Price:</strong> <span th:text="${product.price}"></span> -
-        <strong>Category:</strong> <span th:text="${product.category}"></span>
+        <strong>Category:</strong> <span th:text="${product.category}"></span> -
+        <strong>Price:</strong> <span th:text="${product.price}"></span>
     </li>
 </ul>
 <p><a th:href="@{/}">Back to Home</a></p>

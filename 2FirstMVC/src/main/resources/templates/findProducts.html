@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Products</title>
+</head>
+<body>
+<h1>Search Products</h1>
+<form th:action="@{/products/results}" method="get">
+    Category: <input type="text" name="category" /> <br/>
+    Min Price: <input type="number" name="minPrice" step="0.01" /> <br/>
+    Max Price: <input type="number" name="maxPrice" step="0.01" /> <br/>
+    <button type="submit">Search</button>
+</form>
+<p><a th:href="@{/}">Back to Home</a></p>
+</body>
+</html>

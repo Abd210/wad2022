@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Welcome</title>
 </head>
 <body>
 <h1>Welcome</h1>
-<a th:href="@{'/products'}">View all products</a>
-<a th:href="@{'/products/new'}">Add new product</a>
+
+<!-- Use th:href for direct references to Spring endpoints -->
+<p>
+    <a th:href="@{/products}">View all products</a> <br/>
+    <a th:href="@{/products/new}">Add new product</a> <br/>
+    <a th:href="@{/addUser}">Add User</a> <br/>
+    <a th:href="@{/viewUsers}">View Users</a> <br/>
+    <a th:href="@{/products/findProducts}">Find Products</a> <br/>
+</p>
+
 </body>
 </html>
