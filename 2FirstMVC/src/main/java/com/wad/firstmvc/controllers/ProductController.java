@@ -1,3 +1,4 @@
+//productController
 package com.wad.firstmvc.controllers;
 
 import com.wad.firstmvc.domain.Product;

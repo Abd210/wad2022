@@ -1,22 +1,27 @@
 package com.wad.firstmvc.services;
 
 import com.wad.firstmvc.domain.User;
+import com.wad.firstmvc.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final List<User> users = new ArrayList<>();
+
+    private final UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void addUser(User user) {
-        users.add(user);
+        userRepository.save(user);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return users;
+        return userRepository.findAll();
     }
 }

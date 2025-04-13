@@ -1,3 +1,4 @@
+//productService
 package com.wad.firstmvc.services;
 
 import com.wad.firstmvc.domain.Product;

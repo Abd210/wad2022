@@ -1,3 +1,4 @@
+//homeController
 package com.wad.firstmvc.controllers;
 
 import org.springframework.stereotype.Controller;
