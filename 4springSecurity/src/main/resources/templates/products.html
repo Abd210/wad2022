@@ -3,11 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>View Products</title>
+    <style>
+        .navigation {
+            margin-bottom: 20px;
+        }
+        .navigation a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #008CBA;
+        }
+        .product-container {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .add-to-cart {
+            margin-left: 10px;
+            text-decoration: none;
+            color: green;
+        }
+    </style>
 </head>
 <body>
-<div th:each="product : ${products}">
+<h1>Products</h1>
+<div class="navigation">
+    <a th:href="@{/}">Return Home</a>
+    <a th:href="@{/cart}">View Cart</a>
+    <a th:href="@{/orders}">My Orders</a>
+</div>
+<div th:each="product : ${products}" class="product-container">
     <span th:text="${product.id}">id</span>
     <span th:text="${product.name}">name</span>
+    <a th:href="@{|/cart/add?pid=${product.id}|}" class="add-to-cart">Add to cart</a>
 </div>
 </body>
 </html>

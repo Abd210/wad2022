@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Orders</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .order-container {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+        .order-header {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .navigation {
+            margin-bottom: 20px;
+        }
+        .navigation a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #008CBA;
+        }
+    </style>
+</head>
+<body>
+<h1>Your Orders</h1>
+
+<div class="navigation">
+    <a th:href="@{/}">Return Home</a>
+    <a th:href="@{/products}">Back to Products</a>
+    <a th:href="@{/cart}">View Cart</a>
+</div>
+
+<div th:if="${orders.isEmpty()}">
+    <p>You have no orders yet.</p>
+</div>
+
+<div th:unless="${orders.isEmpty()}">
+    <div th:each="order, orderStat : ${orders}" class="order-container">
+        <div class="order-header">
+            <h3 th:text="|Order #${order.id}|">Order #1</h3>
+            <p th:text="|Date: ${#temporals.format(order.orderDate, 'yyyy-MM-dd HH:mm')}|">Date: 2023-01-01</p>
+        </div>
+        
+        <table>
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${order.orderItems}">
+                <td th:text="${item.product.name}">Product Name</td>
+                <td th:text="${item.quantity}">Quantity</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html> 

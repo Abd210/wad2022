@@ -3,11 +3,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Spring Security Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .navigation {
+            margin: 20px 0;
+        }
+        .navigation a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #008CBA;
+        }
+    </style>
 </head>
 <body>
-<h1>Welcome</h1>
-<a th:href="@{'/products'}">View all products</a>
-<a th:href="@{'/products/new'}">Add new product</a>
+<h1>Welcome to Spring Security Products</h1>
+<div class="navigation">
+    <a th:href="@{'/products'}">View all products</a>
+    <a th:href="@{'/products/new'}">Add new product</a>
+    <a th:href="@{'/cart'}">View cart</a>
+    <a th:href="@{'/orders'}">My orders</a>
+</div>
 </body>
 </html>

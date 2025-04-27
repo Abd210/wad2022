@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Add new product</title>
+    <style>
+        .navigation {
+            margin-bottom: 20px;
+        }
+        .navigation a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #008CBA;
+        }
+        form {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
+<h1>Add New Product</h1>
+<div class="navigation">
+    <a th:href="@{/}">Return Home</a>
+    <a th:href="@{/products}">Back to Products</a>
+</div>
 <!--action is by default POST /products/new -->
 <form th:object="${product}" method="post">
-    <input th:field="*{name}" >
-    <input type="submit">
+    <input th:field="*{name}" placeholder="Product Name">
+    <input type="submit" value="Add Product">
 </form>
 </body>
 </html>
