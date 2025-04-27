@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Data</title>
+</head>
+<body>
+<h1>All Data</h1>
+
+<h2>Patients</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.id}"></td>
+        <td th:text="${patient.name}"></td>
+    </tr>
+</table>
+
+<h2>Health Issues</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Patient ID</th>
+    </tr>
+    <tr th:each="issue : ${healthIssues}">
+        <td th:text="${issue.id}"></td>
+        <td th:text="${issue.type}"></td>
+        <td th:text="${issue.patient != null ? issue.patient.id : ''}"></td>
+    </tr>
+</table>
+
+<h2>Medical Encounters</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Patient ID</th>
+        <th>Care Provider ID</th>
+        <th>Health Issue ID</th>
+    </tr>
+    <tr th:each="encounter : ${encounters}">
+        <td th:text="${encounter.id}"></td>
+        <td th:text="${encounter.date}"></td>
+        <td th:text="${encounter.patient != null ? encounter.patient.id : ''}"></td>
+        <td th:text="${encounter.careProvider != null ? encounter.careProvider.id : ''}"></td>
+        <td th:text="${encounter.healthIssue != null ? encounter.healthIssue.id : ''}"></td>
+    </tr>
+</table>
+
+<h2>Care Providers</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Specialty</th>
+    </tr>
+    <tr th:each="provider : ${careProviders}">
+        <td th:text="${provider.id}"></td>
+        <td th:text="${provider.name}"></td>
+        <td th:text="${provider.specialty}"></td>
+    </tr>
+</table>
+
+<h2>Health Services</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Medical Encounter ID</th>
+        <th>Health Issue ID</th>
+    </tr>
+    <tr th:each="service : ${healthServices}">
+        <td th:text="${service.id}"></td>
+        <td th:text="${service.description}"></td>
+        <td th:text="${service.type}"></td>
+        <td th:text="${service.medicalEncounter != null ? service.medicalEncounter.id : ''}"></td>
+        <td th:text="${service.healthIssue != null ? service.healthIssue.id : ''}"></td>
+    </tr>
+</table>
+
+<hr/>
+<a href="/">Home</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Query Home</title>
+</head>
+<body>
+<h1>Query Home</h1>
+<p>This page simply redirects to the main queries page or can provide links to sub-forms if desired.</p>
+
+<!-- A single link to the main queries page -->
+<p><a th:href="@{/templates/queries}">Go to Queries</a></p>
+
+<!-- If you prefer direct links to separate forms, you can include them here as well:
+<ul>
+    <li><a th:href="@{/queries/patient-issues-form}">Query 1: Patient Health Issues</a></li>
+    <li><a th:href="@{/queries/encounters-by-date-form}">Query 2: Encounter Date</a></li>
+    <li><a th:href="@{/queries/provider-patients-form}">Query 3: Provider's Patients</a></li>
+    <li><a th:href="@{/queries/healthissue-providers-form}">Query 4: Issue -> Providers</a></li>
+</ul>
+-->
+</body>
+</html>

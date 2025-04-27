@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Queries</title>
+</head>
+<body>
+<h1>Custom Queries</h1>
+
+<!-- Query 1: Health Issues by Patient ID -->
+<h2>Query 1: Patient Health Issues</h2>
+<form th:action="@{/queries/patientIssues}" method="post">
+    <label for="patientId">Patient ID:</label>
+    <input type="text" id="patientId" name="patientId" required>
+    <br/>
+    <input type="radio" id="allIssues" name="action" value="allIssues" checked>
+    <label for="allIssues">All Health Issues</label>
+    <br/>
+    <input type="radio" id="issuesWithService" name="action" value="issuesWithService">
+    <label for="issuesWithService">Only Issues with At Least One Service</label>
+    <br/>
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Query 2: Patients by Encounter Date -->
+<h2>Query 2: Patients by Encounter Date</h2>
+<form th:action="@{/queries/encounterDate}" method="post">
+    <label for="encounterDate">Encounter Date (YYYY-MM-DD):</label>
+    <input type="text" id="encounterDate" name="encounterDate" placeholder="2025-01-10" required>
+    <br/>
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Query 3: Patients by Care Provider Name -->
+<h2>Query 3: Patients by Care Provider Name</h2>
+<form th:action="@{/queries/careProviderPatients}" method="post">
+    <label for="providerName">Care Provider Name:</label>
+    <input type="text" id="providerName" name="providerName" required>
+    <br/>
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Query 4: Care Providers by Health Issue Type -->
+<h2>Query 4: Care Providers by Health Issue Type</h2>
+<form th:action="@{/queries/issueCareProviders}" method="post">
+    <label for="issueType">Health Issue Type:</label>
+    <input type="text" id="issueType" name="issueType" required>
+    <br/>
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Query Results -->
+<div th:if="${results}">
+    <h2>Query Results</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th th:each="col : ${resultColumns}" th:text="${col}">Column</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="row : ${results}">
+            <td th:each="cell : ${row}" th:text="${cell}">Data</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<br/>
+<a href="/patients">View All Patients</a> |
+<a href="/encounters">View All Encounters</a> |
+<a href="/careproviders">View All Care Providers</a> |
+<a href="/healthissues">View All Health Issues</a> |
+<a href="/healthservices">View All Health Services</a>
+</body>
+</html>

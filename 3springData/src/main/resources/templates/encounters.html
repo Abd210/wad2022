@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Encounters</title>
+</head>
+<body>
+<h1>Medical Encounters</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Patient Name</th>
+        <th>Care Provider</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="encounter : ${encounters}">
+        <td th:text="${encounter.id}">ID</td>
+        <td th:text="${encounter.date}">Date</td>
+        <td th:text="${encounter.patient.name}">Patient</td>
+        <td th:text="${encounter.careProvider.name}">Care Provider</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<a href="/queries">Back to Home</a>
+</body>
+</html>

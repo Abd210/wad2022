@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Health Issues</title>
+</head>
+<body>
+<h1>Health Issues for Patient <span th:text="${patientId}"></span></h1>
+
+<h2>All Health Issues:</h2>
+<ul>
+    <li th:each="issue : ${allIssues}">
+        <span th:text="${issue.type}"></span> (ID: <span th:text="${issue.id}"></span>)
+    </li>
+</ul>
+
+<h2>Health Issues with Services:</h2>
+<ul>
+    <li th:each="issue : ${issuesWithServices}">
+        <span th:text="${issue.type}"></span> (ID: <span th:text="${issue.id}"></span>)
+    </li>
+</ul>
+
+<a th:href="@{/queries/patient-issues-form}">Back</a>
+</body>
+</html>

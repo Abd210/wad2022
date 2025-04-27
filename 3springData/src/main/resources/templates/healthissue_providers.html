@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Care Providers by Health Issue</title>
+</head>
+<body>
+<h1>Care Providers for Health Issue: <span th:text="${issueType}"></span></h1>
+<ul>
+    <li th:each="provider : ${careProviders}">
+        <span th:text="${provider.name}"></span> (Specialty: <span th:text="${provider.specialty}"></span>,
+        ID: <span th:text="${provider.id}"></span>)
+    </li>
+</ul>
+<a th:href="@{/queries/healthissue-providers-form}">Back</a>
+</body>
+</html>
