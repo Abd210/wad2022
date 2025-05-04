@@ -1,7 +1,6 @@
 package com.example.mvcproducts.restcontrollers;
 
 import com.example.mvcproducts.domain.Product;
-import com.example.mvcproducts.security.JwtUtil;
 import com.example.mvcproducts.services.ProductService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -9,34 +8,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1/products")
 public class ProductRestController {
 
-    private final JwtUtil jwtUtil;
     private final ProductService productService;
 
-    public ProductRestController(JwtUtil jwtUtil, ProductService productService) {
-        this.jwtUtil = jwtUtil;
+    public ProductRestController(ProductService productService) {
         this.productService = productService;
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<Product>> getAllProducts(@RequestHeader(value="Authorization") String token){
-        token=token.substring(7);
-        System.out.println(token);
-        if (!jwtUtil.validateToken(token)) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
+    @GetMapping("")
+    public ResponseEntity<List<Product>> getAllProducts(){
         return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
     }
 
-
-
     //add and also return the location of the new resource
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<?> postProduct(@RequestBody Product p){
         Product savedProduct = productService.save(p);
         HttpHeaders headers = new HttpHeaders();
@@ -45,7 +36,22 @@ public class ProductRestController {
         return new ResponseEntity<>(headers,HttpStatus.CREATED);
     }
 
-    //TODO 8 Delete mapping
-    //TODO 9 Put mapping
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+        productService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+        Optional<Product> existingProduct = productService.findById(id);
+        
+        if (existingProduct.isPresent()) {
+            product.setId(id);
+            productService.save(product);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
